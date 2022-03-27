@@ -16,6 +16,7 @@
 #pragma once
 #include "dlg.h"
 #include "utl.h"
+#include <shellapi.h>
 
 enum class PatcherState : size_t
 {

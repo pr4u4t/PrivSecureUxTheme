@@ -876,6 +876,41 @@ INT_PTR MainDialog::DlgProc(UINT uMsg, WPARAM wParam, LPARAM lParam)
   switch (uMsg)
   {
   case WM_INITDIALOG:
+    LPWSTR *szArglist;
+    int nArgs;
+    int i;
+    
+    szArglist = CommandLineToArgvW(GetCommandLineW(), &nArgs);
+    if(szArglist == NULL){
+      return FALSE;
+    }
+    
+    for(i = 0; i <nArgs; ++i){
+      if(_tcscmp(szArglist[i],L"CC") == 0){
+        Button_SetCheck(_hwnd_CHECK_COLORS, BST_CHECKED);
+      }else if(_tcscmp(szArglist[i],L"CE") == 0){
+        Button_SetCheck(_hwnd_CHECK_EXPLORER, BST_CHECKED);
+      }else if(_tcscmp(szArglist[i],L"CIB") == 0){
+        Button_SetCheck(_hwnd_CHECK_IGNORE_BACKGROUND, BST_CHECKED);
+      }else if(_tcscmp(szArglist[i],L"IC") == 0){
+        Button_SetCheck(_hwnd_CHECK_IGNORE_COLOR, BST_CHECKED);
+      }else if(_tcscmp(szArglist[i],L"ICR") == 0){
+        Button_SetCheck(_hwnd_CHECK_IGNORE_CURSOR, BST_CHECKED);
+      }else if(_tcscmp(szArglist[i],L"IDI") == 0){
+        Button_SetCheck(_hwnd_CHECK_IGNORE_DESKTOP_ICONS, BST_CHECKED);
+      }else if(_tcscmp(szArglist[i],L"IS") == 0){
+        Button_SetCheck(_hwnd_CHECK_IGNORE_SOUND, BST_CHECKED);
+      }else if(_tcscmp(szArglist[i],L"ISS") == 0){
+        Button_SetCheck(_hwnd_CHECK_IGNORE_SCREENSAVER, BST_CHECKED);
+      }else if(_tcscmp(szArglist[i],L"CL") == 0){
+        Button_SetCheck(_hwnd_CHECK_LOGONUI, BST_CHECKED);
+      }else if(_tcscmp(szArglist[i],L"CS") == 0){
+        Button_SetCheck(_hwnd_CHECK_SYSTEMSETTINGS, BST_CHECKED);
+      }
+    }
+    
+    LocalFree(szArglist);
+    
     return FALSE; // do not select default control
 
   case WM_COMMAND:
