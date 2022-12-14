@@ -40,7 +40,7 @@ jobs:
         Echo ("::set-output name=version_patch::" + $VersionPatch);
 
     - name: Setup MSBuild
-      uses: microsoft/setup-msbuild@v1.1
+      uses: microsoft/setup-msbuild@v1.3
 
     - name: Build Solution (x64)
       run: |
